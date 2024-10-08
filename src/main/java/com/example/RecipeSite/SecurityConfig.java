@@ -43,6 +43,7 @@ public class SecurityConfig {
 				new AntPathRequestMatcher("/user"),
 				new AntPathRequestMatcher("/css"),
 				new AntPathRequestMatcher("/images/**"),
+				new AntPathRequestMatcher("/push7-worker.js"),
 				new AntPathRequestMatcher("/scripts/**"));
 		
 		//@formatter:off
@@ -53,7 +54,7 @@ public class SecurityConfig {
 				.formLogin(login -> login
 							.loginProcessingUrl("/login")
 							.loginPage("/login")
-							.defaultSuccessUrl("/topics")
+							.defaultSuccessUrl("/recipes")
 							.failureUrl("/login-failure")
 							.permitAll())
 				.logout(logout -> logout

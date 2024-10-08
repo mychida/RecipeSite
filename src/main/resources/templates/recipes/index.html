@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
+    <head>
+        <title>RecipeSite</title>
+    </head>
+    <body>
+        <div class="recipes-index-wrapper" layout:fragment="contents">
+            <div class="container">
+                <div class="row" th:each="recipe : ${list}">
+                    <div class="col-md-6 mx-auto">
+                        <main>
+                            <h1 class="text-center" th:text="${recipe.recipeName}"></h1>
+                            <div class="mb-3" th:text="${recipe.tag}"></div>
+                            <div class="mb-3" th:text="${recipe.serving}"></div>
+                            <div class="mb-3" th:text="${recipe.description}"></div>
+                        </main> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
