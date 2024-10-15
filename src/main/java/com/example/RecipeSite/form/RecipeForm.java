@@ -1,5 +1,7 @@
 package com.example.RecipeSite.form;
 
+import java.util.List;
+
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -24,5 +26,9 @@ public class RecipeForm {
 	private String tag;
 	
 	private UserForm user;
+	
+	private List<FavoriteForm> favorites;
+	
+	private FavoriteForm favorite;
 
 }
