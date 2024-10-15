@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.RecipeSite.entity.Favorite;
 import com.example.RecipeSite.entity.Recipe;
 import com.example.RecipeSite.entity.UserInf;
+import com.example.RecipeSite.form.FavoriteForm;
 import com.example.RecipeSite.form.RecipeForm;
 import com.example.RecipeSite.form.UserForm;
 import com.example.RecipeSite.repository.RecipeRepository;
@@ -55,11 +57,25 @@ public class RecipesController {
 		modelMapper.getConfiguration().setAmbiguityIgnored(true);
 		modelMapper.typeMap(Recipe.class, RecipeForm.class).addMappings(mapper ->
 				mapper.skip(RecipeForm::setUser));
+		modelMapper.typeMap(Recipe.class, RecipeForm.class).addMappings(mapper ->
+				mapper.skip(RecipeForm::setFavorites));
+		modelMapper.typeMap(Favorite.class, FavoriteForm.class).addMappings(mapper ->
+				mapper.skip(FavoriteForm::setRecipe));
 		
 		RecipeForm form = modelMapper.map(entity, RecipeForm.class);
 		
 		UserForm userForm = modelMapper.map(entity.getUser(), UserForm.class);
 		form.setUser(userForm);
+		
+		List<FavoriteForm> favorites = new ArrayList<FavoriteForm>();
+		for(Favorite favoriteEntity : entity.getFavorites()) {
+			FavoriteForm favorite= modelMapper.map(favoriteEntity, FavoriteForm.class);
+			favorites.add(favorite);
+			if(user.getUserId().equals(favoriteEntity.getUserId())) {
+				form.setFavorite(favorite);
+			}
+		}
+		form.setFavorites(favorites);
 		 
 		return form;
 	
