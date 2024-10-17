@@ -22,6 +22,16 @@
                                 <label class="form-label text-black" for="recipe_serving">何人前</label>
                                 <textarea class="form-control" th:field="*{serving}" rows="1" th:errorclass="error-field"></textarea>
                                 <p th:if="${#fields.hasErrors('serving')}" class="error-message" th:errors="*{serving}"></p>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label text-black" for="recipe_">材料</label>
+                                <textarea class="form-control" th:field="*{materials}" rows="10" th:errorclass="error-field"></textarea>
+                                <p th:if="${#fields.hasErrors('materials')}" class="error-message" th:errors="*{materials}"></p>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label text-black" for="recipe_">作り方</label>
+                                <textarea class="form-control" th:field="*{processes}" rows="10" th:errorclass="error-field"></textarea>
+                                <p th:if="${#fields.hasErrors('processes')}" class="error-message" th:errors="*{processes}"></p>
                             </div>                   
                             <div class="mb-3">
                                 <label class="form-label text-black" for="recipe_">説明</label>

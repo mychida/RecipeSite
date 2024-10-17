@@ -16,7 +16,16 @@ public class RecipeForm {
 	@NotEmpty
 	private String recipeName;
 	
+	@NotEmpty
 	private String serving;
+	
+	@NotEmpty
+	@Size(max = 1000)
+	private String materials;
+	
+	@NotEmpty
+	@Size(max = 1000)
+	private String processes;
 	
 	@Size(max = 1000)
 	private String description;
