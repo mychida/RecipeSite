@@ -12,6 +12,8 @@
                             <h1 class="text-center" th:text="${recipe.recipeName}"></h1>
                             <div class="mb-3" th:text="${recipe.tag}"></div>
                             <div class="mb-3" th:text="${recipe.serving}"></div>
+                            <div class="mb-3" th:text="${recipe.materials}"></div>
+                            <div class="mb-3" th:text="${recipe.processes}"></div>
                             <div class="mb-3" th:text="${recipe.description}"></div>
                             <div class="icons">
 								<a th:if="${recipe.favorite != null}" rel="nofollow" class="icon convert" data-method="delete" href="/favorite?recipe_id=${recipe.id}" th:href="@{'/favorite'}" th:data-recipe_id="${recipe.id}" th:data-_csrf="${_csrf.token}">

@@ -38,6 +38,12 @@ public class Recipe extends AbstractEntity implements Serializable {
 	private String serving;
 	
 	@Column(nullable = false, length = 1000)
+	private String materials;
+	
+	@Column(nullable = false, length = 1000)
+	private String processes;
+	
+	@Column(nullable = false, length = 1000)
 	private String description;
 	
 	@Column(nullable = false, length = 30)
@@ -50,4 +56,5 @@ public class Recipe extends AbstractEntity implements Serializable {
 	@OneToMany
 	@JoinColumn(name = "recipeId", insertable = false, updatable = false)
 	private List<Favorite> favorites;
+	
 }

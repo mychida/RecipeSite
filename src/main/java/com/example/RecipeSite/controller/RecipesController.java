@@ -25,8 +25,6 @@ import com.example.RecipeSite.form.RecipeForm;
 import com.example.RecipeSite.form.UserForm;
 import com.example.RecipeSite.repository.RecipeRepository;
 
-import jakarta.servlet.http.HttpServletRequest;
-
 @Controller
 public class RecipesController {
 	
@@ -34,8 +32,6 @@ public class RecipesController {
 	private ModelMapper modelMapper;
 	@Autowired
 	private RecipeRepository repository;
-	@Autowired
-	private HttpServletRequest request;
 	
 	@GetMapping("/recipes")
 	public String index(Principal principal, Model model) throws IOException {
@@ -102,6 +98,8 @@ public class RecipesController {
 		entity.setUserId(user.getUserId());
 		entity.setRecipeName(form.getRecipeName());
 		entity.setServing(form.getServing());
+		entity.setMaterials(form.getMaterials());
+		entity.setProcesses(form.getProcesses());
 		entity.setDescription(form.getDescription());
 		entity.setTag(form.getTag());
 		repository.saveAndFlush(entity);
