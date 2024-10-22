@@ -33,6 +33,6 @@ public class Favorite extends AbstractEntity implements Serializable {
 	private Long recipeId;
 	
 	@ManyToOne
-	@JoinColumn(name = "topicId", insertable = false, updatable = false)
+	@JoinColumn(name = "recipeId", insertable = false, updatable = false)
 	private Recipe recipe;
 }
