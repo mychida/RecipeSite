@@ -15,7 +15,7 @@ public class AbstractEntity {
 	@Column(name = "created_at")
 	private Date createdAt;
 	
-	@Column(name = "updatd_at")
+	@Column(name = "updated_at")
 	private  Date updatedAt;
 	
 	/**

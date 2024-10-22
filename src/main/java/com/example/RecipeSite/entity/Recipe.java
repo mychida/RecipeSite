@@ -31,7 +31,7 @@ public class Recipe extends AbstractEntity implements Serializable {
 	@Column(nullable = false)
 	private Long userId;
 	
-	@Column(name = "recipe_name", nullable = false)
+	@Column( nullable = false)
 	private String recipeName;
 	
 	@Column(nullable = false)
