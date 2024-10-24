@@ -57,4 +57,6 @@ public class Recipe extends AbstractEntity implements Serializable {
 	@JoinColumn(name = "recipeId", insertable = false, updatable = false)
 	private List<Favorite> favorites;
 	
+	@Column
+	private boolean deleted = false;
 }

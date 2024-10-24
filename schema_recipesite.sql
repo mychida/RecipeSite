@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS users (
    tag VARCHAR(30) NOT NULL,
    created_at TIMESTAMP NOT NULL,
    updated_at TIMESTAMP NOT NULL,
+   deleted BOOLEAN NOT NULL,
    PRIMARY KEY(id)
  );
  
