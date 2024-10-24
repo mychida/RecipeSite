@@ -3,6 +3,7 @@ package com.example.RecipeSite.controller;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,7 +41,7 @@ public class RecipesController {
 		Authentication authentication = (Authentication) principal;
 		UserInf user = (UserInf) authentication.getPrincipal();
 		
-		List<Recipe> recipes = repository.findAllByOrderByUpdatedAtDesc();
+		List<Recipe> recipes = repository.findByDeletedFalseOrderByUpdatedAtDesc();
 		List<RecipeForm> list = new ArrayList<>();
 		for(Recipe entity : recipes) {
 			RecipeForm form = getRecipe(user, entity);
@@ -137,7 +138,7 @@ public class RecipesController {
 			model.addAttribute("hasMessage", true);
 			model.addAttribute("class", "alert-danger");
 			model.addAttribute("message", "更新に失敗しました");
-			return "recipes/new"; //??
+			return "recipes/index"; 
 		}
 		
 		Optional<Recipe> optionalRecipe = repository.findById(form.getId());
@@ -157,6 +158,34 @@ public class RecipesController {
 		redirAttrs.addFlashAttribute("class", "alert-info");
 		redirAttrs.addFlashAttribute("message", "更新に成功しました");
 		
-		return "redirect:/recipes";//?
+		return "redirect:/recipes";
+	}
+	
+	/*
+	 * 削除する
+	 */
+	@GetMapping("/delete")
+	public String delete(Principal principal, @RequestParam Long id, Recipe form, 
+			BindingResult result, Model model, RedirectAttributes redirAttrs) throws IOException {
+		if (result.hasErrors()) {
+			model.addAttribute("hasMessage", true);
+			model.addAttribute("class", "alert-danger");
+			model.addAttribute("message", "削除に失敗しました");
+			return "recipes/index";
+		}
+		
+		Optional<Recipe> entity = repository.findById(form.getId());
+		Recipe recipe = entity.get();
+		//recipe.setDeleted(true);
+		recipe.setDeleted(true);
+		Date current = new Date();
+		recipe.setUpdatedAt(current);
+		repository.saveAndFlush(recipe);
+		
+		redirAttrs.addFlashAttribute("hasMessage", true);
+		redirAttrs.addFlashAttribute("class", "alert-info");
+		redirAttrs.addFlashAttribute("message", "削除に成功しました");
+		
+		return "redirect:/recipes";
 	}
 }

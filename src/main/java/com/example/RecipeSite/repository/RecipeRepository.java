@@ -16,4 +16,6 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long>{
 	 */
 	public Optional<Recipe> findById(Long id);
 
+	//論理削除したものを表示させない
+	List<Recipe> findByDeletedFalseOrderByUpdatedAtDesc();
 }
