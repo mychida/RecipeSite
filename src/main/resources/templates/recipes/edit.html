@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
+    <head>
+        <title>RecipeSite</title>
+    </head>
+    <body>
+        <div class="recipes-new-wrapper" layout:fragment="contents">
+            <div class="container">
+                <div class="row p-form-top d-none d-lg-block d-xl-block d-xxl-block"></div>
+                <div class="row">
+                    <div class="col-md-6 mx-auto">
+                        <h1 class="text-center">レシピ編集</h1>
+                        <form class="new_recipe" id="new_recipe" method="post" th:action="@{/update}" th:object="${form}" enctype="multipart/form-data">
+                            <div layout:replace="~{layouts/common::messages}"></div>
+                            <input type="hidden" th:field="*{id}" />
+                            <div class="mb-3">
+                                <label class="form-label text-black" for="recipe_recipeName">レシピ名</label>
+                                <textarea class="form-control" th:field="*{recipeName}" rows="1" th:errorclass="error-field"></textarea>
+                                <p th:if="${#fields.hasErrors('recipeName')}" class="error-message" th:errors="*{recipeName}"></p>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label text-black" for="recipe_serving">何人前</label>
+                                <textarea class="form-control" th:field="*{serving}" rows="1" th:errorclass="error-field"></textarea>
+                                <p th:if="${#fields.hasErrors('serving')}" class="error-message" th:errors="*{serving}"></p>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label text-black" for="recipe_">材料</label>
+                                <textarea class="form-control" th:field="*{materials}" rows="10" th:errorclass="error-field"></textarea>
+                                <p th:if="${#fields.hasErrors('materials')}" class="error-message" th:errors="*{materials}"></p>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label text-black" for="recipe_">作り方</label>
+                                <textarea class="form-control" th:field="*{processes}" rows="10" th:errorclass="error-field"></textarea>
+                                <p th:if="${#fields.hasErrors('processes')}" class="error-message" th:errors="*{processes}"></p>
+                            </div>                   
+                            <div class="mb-3">
+                                <label class="form-label text-black" for="recipe_">説明</label>
+                                <textarea class="form-control" th:field="*{description}" rows="10" th:errorclass="error-field"></textarea>
+                                <p th:if="${#fields.hasErrors('description')}" class="error-message" th:errors="*{description}"></p>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label text-black" for="recipe_tag">タグ</label>
+                                <textarea class="form-control" th:field="*{tag}" rows="1" th:errorclass="error-field"></textarea>
+                                <p th:if="${#fields.hasErrors('tag')}" class="error-message" th:errors="*{tag}"></p>
+                            </div>  
+                            <input type="submit" value="更新" class="btn w-100 btn-outline-dark" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
