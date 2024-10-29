@@ -9,28 +9,27 @@
 	            <div class="row p-form-top d-none d-lg-block d-xl-block d-xxl-block"></div>
 	            <div class="row">
 	                <main class="col-md-4 mx-auto">
-	                    <h1 class="text-center text-black">Sign up</h1>
+	                    <h1 class="text-center text-black">新規登録</h1>
 	                    <form method="post" th:action="@{/user}" th:object="${form}">
 	                        <div layout:replace="~{layouts/common::messages}"></div>
 	                        <div class="mb-3">
-	                            <label class="form-label text-black" for="user_name">Name</label>
+	                            <label class="form-label text-black" for="user_name">名前</label>
 	                            <input type="text" class="form-control" th:field="*{name}" />
 	                            <p th:if="${#fields.hasErrors('name')}" class="error-message" th:errors="*{name}"></p>
 	                        </div>
 	                        <div class="mb-3">
-	                            <label class="form-label text-black" for="user_email">Email</label>
+	                            <label class="form-label text-black" for="user_email">メールアドレス</label>
 	                            <input type="text" class="form-control" th:field="*{email}" />
 	                            <p th:if="${#fields.hasErrors('email')}" class="error-message" th:errors="*{email}"></p>
 	                        </div>
 	                        <div class="mb-3">
-	                            <label class="form-label text-black" for="user_password">Password</label>
+	                            <label class="form-label text-black" for="user_password">パスワード</label>
 	                            <input class="form-control" type="password" th:field="*{password}" />
 	                            <p th:if="${#fields.hasErrors('password')}" class="error-message" th:errors="*{password}">
 	                            </p>
 	                        </div>
 	                        <div class="mb-3">
-	                            <label class="form-label text-black" for="user_password_confirmation">Password
-	                                confirmation</label>
+	                            <label class="form-label text-black" for="user_password_confirmation">パスワード（確認用）</label>
 	                            <input type="password" class="form-control" th:field="*{passwordConfirmation}" />
 	                            <p th:if="${#fields.hasErrors('passwordConfirmation')}" class="error-message" th:errors="*{passwordConfirmation}"></p>
 	                        </div>
